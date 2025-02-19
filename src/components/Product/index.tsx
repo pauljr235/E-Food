@@ -2,22 +2,36 @@ import pasta from '../../assets/images/massa.png'
 import estrela from '../../assets/images/estrela.png'
 import { TagContainer, Titulo, Descricao, Botao, Card, Rating } from './styles'
 
-const Products = () => {
+type Props = {
+  image: string
+  title: string
+  rating: string
+  destaque: string
+  category: string
+  description: string
+}
+
+const Products = ({
+  image,
+  title,
+  rating,
+  destaque,
+  category,
+  description
+}: Props) => {
   return (
     <Card className="container">
-      <img src={pasta} alt="Massa" />
+      <img src={image} />
       <Titulo>
-        <h3>La Dolce Vita Trattoria</h3>
-        <Rating>4.5</Rating>
-        <img src={estrela} alt="Estrela" />
+        <h3>{title}</h3>
+        <Rating>
+          {rating} <img src={estrela} alt="Estrela" />
+        </Rating>
       </Titulo>
-      <TagContainer>italiana</TagContainer>
+      <TagContainer style={{ marginRight: '100px' }}>{destaque}</TagContainer>
+      <TagContainer>{category}</TagContainer>
 
-      <Descricao>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ea
-        dignissimos esse? Aliquid veniam vel rerum assumenda nam a soluta quos
-        quis, ea pariatur, quo cum totam quisquam dignissimos cupiditate.
-      </Descricao>
+      <Descricao>{description}</Descricao>
       <Botao type="button">Saiba mais</Botao>
     </Card>
   )
