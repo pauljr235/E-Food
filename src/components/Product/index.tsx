@@ -1,6 +1,7 @@
 import pasta from '../../assets/images/massa.png'
 import estrela from '../../assets/images/estrela.png'
 import { TagContainer, Titulo, Descricao, Botao, Card, Rating } from './styles'
+import { Link } from 'react-router-dom'
 
 type Props = {
   image: string
@@ -32,7 +33,9 @@ const Products = ({
       <TagContainer>{category}</TagContainer>
 
       <Descricao>{description}</Descricao>
-      <Botao type="button">Saiba mais</Botao>
+      <Link to={'/perfil'}>
+        <Botao type="button">Saiba mais</Botao>
+      </Link>
     </Card>
   )
 }
