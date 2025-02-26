@@ -7,7 +7,7 @@ type Props = {
   image: string
   title: string
   rating: string
-  destaque: string
+  destacado: boolean
   category: string
   description: string
 }
@@ -16,7 +16,7 @@ const Products = ({
   image,
   title,
   rating,
-  destaque,
+  destacado,
   category,
   description
 }: Props) => {
@@ -29,7 +29,12 @@ const Products = ({
           {rating} <img src={estrela} alt="Estrela" />
         </Rating>
       </Titulo>
-      <TagContainer style={{ marginRight: '100px' }}>{destaque}</TagContainer>
+      {destacado && (
+        <TagContainer style={{ marginRight: '100px' }}>
+          Destaque da Semana{destacado}
+        </TagContainer>
+      )}
+
       <TagContainer>{category}</TagContainer>
 
       <Descricao>{description}</Descricao>

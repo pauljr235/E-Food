@@ -13,12 +13,12 @@ const ProductList = ({ restaurantes }: ProductProps) => (
       {restaurantes.map((restaurante) => (
         <Products
           key={restaurante.id}
-          image={restaurante.image}
-          title={restaurante.title}
-          rating={restaurante.rating}
-          destaque={restaurante.destaque}
-          category={restaurante.category}
-          description={restaurante.description}
+          image={restaurante.capa}
+          title={restaurante.titulo}
+          rating={restaurante.avaliacao}
+          destacado={restaurante.destacado}
+          category={restaurante.tipo}
+          description={restaurante.descricao}
         />
       ))}
     </List>

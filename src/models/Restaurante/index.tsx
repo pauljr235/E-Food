@@ -1,28 +1,28 @@
 class Restaurante {
   id: number
-  image: string
-  title: string
-  rating: string
-  destaque: string
-  category: string
-  description: string
+  capa: string
+  titulo: string
+  avaliacao: string
+  destacado: boolean
+  tipo: string
+  descricao: string
 
   constructor(
     id: number,
-    image: string,
-    title: string,
-    rating: string,
-    destaque: string,
-    category: string,
-    description: string
+    capa: string,
+    titulo: string,
+    avaliacao: string,
+    destacado: boolean,
+    tipo: string,
+    descricao: string
   ) {
     this.id = id
-    this.image = image
-    this.title = title
-    this.rating = rating
-    this.destaque = destaque
-    this.category = category
-    this.description = description
+    this.capa = capa
+    this.titulo = titulo
+    this.avaliacao = avaliacao
+    this.destacado = destacado
+    this.tipo = tipo
+    this.descricao = descricao
   }
 }
 
