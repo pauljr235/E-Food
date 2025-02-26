@@ -1,9 +1,9 @@
-import pasta from '../../assets/images/massa.png'
 import estrela from '../../assets/images/estrela.png'
 import { TagContainer, Titulo, Descricao, Botao, Card, Rating } from './styles'
 import { Link } from 'react-router-dom'
 
 type Props = {
+  id: number
   image: string
   title: string
   rating: string
@@ -13,6 +13,7 @@ type Props = {
 }
 
 const Products = ({
+  id,
   image,
   title,
   rating,
@@ -21,7 +22,7 @@ const Products = ({
   description
 }: Props) => {
   return (
-    <Card className="container">
+    <Card className="container" key={id}>
       <img src={image} />
       <Titulo>
         <h3>{title}</h3>

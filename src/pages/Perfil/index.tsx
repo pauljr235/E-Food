@@ -3,59 +3,33 @@ import FoodList from '../../components/FoodList'
 import Header from '../../components/Header'
 import Prato from '../../models/Prato'
 
-import pizza from '../../assets/images/image 3.png'
+import { useEffect, useState } from 'react'
 
-const items: Prato[] = [
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita ',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita ',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita ',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita ',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita ',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita ',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  }
-]
+const Perfil = () => {
+  const [pratos, setPratos] = useState<Prato[]>([])
 
-const Perfil = () => (
-  <>
-    <Header />
-    <Banner />
-    <FoodList pratos={items} />
-  </>
-)
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
+      .then((res) => res.json())
+      .then((restaurantes) => {
+        // Extraindo os pratos de todos os restaurantes
+        const todosOsPratos = restaurantes.flatMap((restaurante: any) =>
+          restaurante.cardapio.map(
+            (prato: any) =>
+              new Prato(prato.id, prato.foto, prato.nome, prato.descricao)
+          )
+        )
+        setPratos(todosOsPratos)
+      })
+  }, [])
+
+  return (
+    <>
+      <Header />
+      <Banner />
+      <FoodList pratos={pratos} />
+    </>
+  )
+}
 
 export default Perfil

@@ -1,14 +1,14 @@
 class Prato {
   id: number
-  image: string
-  title: string
-  description: string
+  foto: string
+  nome: string
+  descricao: string
 
-  constructor(id: number, image: string, title: string, description: string) {
+  constructor(id: number, foto: string, nome: string, descricao: string) {
     this.id = id
-    this.image = image
-    this.title = title
-    this.description = description
+    this.foto = foto
+    this.nome = nome
+    this.descricao = descricao
   }
 }
 

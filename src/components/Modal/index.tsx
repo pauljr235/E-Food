@@ -18,7 +18,15 @@ type ModalProps = {
   onClose: () => void
 }
 
-const FoodModal = ({ image, title, description, onClose }: ModalProps) => {
+const FoodModal = ({
+  isOpen,
+  image,
+  title,
+  description,
+  onClose
+}: ModalProps) => {
+  if (!isOpen) return null // Se o modal não estiver aberto, não renderiza nada
+
   return (
     <Modal>
       <ModalContainer>

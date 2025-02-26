@@ -19,6 +19,7 @@ const ProductList = ({ restaurantes }: ProductProps) => (
           destacado={restaurante.destacado}
           category={restaurante.tipo}
           description={restaurante.descricao}
+          id={0}
         />
       ))}
     </List>

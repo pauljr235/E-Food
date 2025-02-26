@@ -5,6 +5,9 @@ export const Cartao = styled.div`
   background-color: ${cores.pink};
   padding: 8px 8px;
   text-align: center;
+  img {
+    width: 250px;
+  }
 `
 
 export const TituloCartao = styled.h3`

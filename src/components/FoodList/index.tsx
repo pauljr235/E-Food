@@ -12,9 +12,9 @@ const FoodList = ({ pratos }: FoodProps) => (
       {pratos.map((prato) => (
         <Food
           key={prato.id}
-          image={prato.image}
-          title={prato.title}
-          description={prato.description}
+          image={prato.foto}
+          title={prato.nome}
+          description={prato.descricao}
         />
       ))}
     </Lista>
