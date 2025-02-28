@@ -1,12 +1,17 @@
-import massa from '../../assets/images/massa.png'
 import { ImagemHero, TituloHero, Italiana } from './styles'
 
-export const Banner = () => (
+export type PropsBanner = {
+  capa: string
+  tipo: string
+  nome: string
+}
+
+const Banner = ({ capa, tipo, nome }: PropsBanner) => (
   <>
-    <ImagemHero style={{ backgroundImage: `url(${massa})` }}></ImagemHero>
+    <ImagemHero style={{ backgroundImage: `url(${capa})` }}></ImagemHero>
     <div>
-      <Italiana>Italiana</Italiana>
-      <TituloHero>Restaurante aleaotiro</TituloHero>
+      <Italiana>{tipo}</Italiana>
+      <TituloHero>{nome}</TituloHero>
     </div>
   </>
 )
