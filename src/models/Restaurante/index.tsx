@@ -1,3 +1,5 @@
+import Prato from '../Prato'
+
 class Restaurante {
   id: number
   capa: string
@@ -6,7 +8,7 @@ class Restaurante {
   destacado: boolean
   tipo: string
   descricao: string
-
+  cardapio: Prato[]
   constructor(
     id: number,
     capa: string,
@@ -14,7 +16,8 @@ class Restaurante {
     avaliacao: string,
     destacado: boolean,
     tipo: string,
-    descricao: string
+    descricao: string,
+    cardapio: Prato[]
   ) {
     this.id = id
     this.capa = capa
@@ -23,6 +26,7 @@ class Restaurante {
     this.destacado = destacado
     this.tipo = tipo
     this.descricao = descricao
+    this.cardapio = cardapio
   }
 }
 

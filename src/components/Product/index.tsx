@@ -39,7 +39,7 @@ const Products = ({
       <TagContainer>{category}</TagContainer>
 
       <Descricao>{description}</Descricao>
-      <Link to={'/perfil'}>
+      <Link to={`/perfil/${id}`}>
         <Botao type="button">Saiba mais</Botao>
       </Link>
     </Card>

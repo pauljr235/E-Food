@@ -6,7 +6,7 @@ export const Banner = () => (
     <ImagemHero style={{ backgroundImage: `url(${massa})` }}></ImagemHero>
     <div>
       <Italiana>Italiana</Italiana>
-      <TituloHero>La Dolce Vita Trattoria</TituloHero>
+      <TituloHero>Restaurante aleaotiro</TituloHero>
     </div>
   </>
 )
