@@ -31,7 +31,7 @@ const Perfil = () => {
         setRestaurante(restaurante)
         setPratos(todosOsPratos)
       })
-  }, [id]) // Adicione `id` como dependência para recarregar ao mudar de restaurante
+  }, [])
 
   if (!restaurante) {
     return <p>Carregando...</p> // Evita erro se os dados ainda não foram carregados

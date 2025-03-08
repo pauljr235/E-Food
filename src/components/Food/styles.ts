@@ -3,10 +3,15 @@ import { cores } from '../../styles'
 
 export const Cartao = styled.div`
   background-color: ${cores.pink};
-  padding: 8px 8px;
+  padding: 8px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   img {
-    width: 250px;
+    width: 304px;
+    height: 167px;
   }
 `
 
@@ -25,16 +30,15 @@ export const DescricaoCartao = styled.p`
   color: ${cores.white};
   text-align: start;
   margin-left: 8px;
-  margin-top: 8px;
 `
 
 export const BotaoCartao = styled.button`
-  width: 96%;
-  margin-top: 8px;
+  width: 100%;
+  padding: 4px 8px;
   color: ${cores.pink};
   font-weight: bold;
   font-size: 14px;
   background-color: ${cores.white};
   border: none;
-  padding: 4px;
+  margin-top: 12px;
 `

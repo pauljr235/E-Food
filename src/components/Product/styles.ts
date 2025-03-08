@@ -4,8 +4,14 @@ import { cores } from '../../styles'
 export const Card = styled.section`
   border: 1px solid ${cores.pink};
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Para garantir que o card ocupe o espaço completo */
+
   img {
     width: 100%;
+    max-height: 220px;
   }
 `
 
@@ -25,7 +31,7 @@ export const Titulo = styled.h3`
   color: ${cores.pink};
   font-size: 18px;
   display: flex;
-  justify-content: space-between; /* Alinha os itens nas extremidades opostas */
+  justify-content: space-between;
   margin-bottom: 16px;
   margin-left: 8px;
   margin-right: 8px;
@@ -42,6 +48,7 @@ export const Descricao = styled.p`
   color: ${cores.pink};
   line-height: 22px;
   margin-left: 8px;
+  margin-right: 8px;
 `
 
 export const Botao = styled.button`
@@ -57,5 +64,5 @@ export const Botao = styled.button`
 `
 
 export const Rating = styled.h4`
-  margin-left: 160px;
+  margin-left: 100px;
 `
