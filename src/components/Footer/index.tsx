@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
 import {
   Descricao,
@@ -9,7 +10,10 @@ import {
 
 const Footer = () => (
   <FooterContainer>
-    <FooterImg src={logo} alt="Logo E-food" />
+    <a href="#">
+      <FooterImg src={logo} alt="Logo E-food" />
+    </a>
+
     <SocialLinks>
       <a href="#">
         <SocialLink className="bi bi-instagram"></SocialLink>

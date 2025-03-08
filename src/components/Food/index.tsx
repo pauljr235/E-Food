@@ -11,12 +11,20 @@ type FoodProps = {
 const Food = ({ image, title, description }: FoodProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  const getDescription = (description: string) => {
+    //ESPECIFICANDO O LIMITE MAXIMO DE LETRAS NA DESCRIÇAO
+    if (description.length > 95) {
+      return description.slice(0, 92) + '...'
+    }
+    return description
+  }
+
   return (
     <>
       <Cartao>
         <img src={image} alt={title} />
         <TituloCartao>{title}</TituloCartao>
-        <DescricaoCartao>{description}</DescricaoCartao>
+        <DescricaoCartao>{getDescription(description)}</DescricaoCartao>
         <BotaoCartao onClick={() => setIsOpen(true)}>
           Adicionar ao carrinho
         </BotaoCartao>
