@@ -25,4 +25,4 @@ export const GlobalCss = createGlobalStyle`
 
   }
 `
-export const Container = styled
+
