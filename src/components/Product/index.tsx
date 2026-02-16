@@ -30,7 +30,7 @@ const Product = ({image, title, rating, description, infos}: Props) => (
             </Ratings>
         </CardInfo>
         <Descricao>{description}</Descricao>
-        <ButtonLink type='link' to='/product' title='Clique aqui para saber mais'>Saiba mais</ButtonLink>
+        <ButtonLink type='link' to='/perfil' title='Clique aqui para saber mais'>Saiba mais</ButtonLink>
     </Container>
     </Card>
 )

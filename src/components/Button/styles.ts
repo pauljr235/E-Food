@@ -3,11 +3,12 @@ import { cores } from "../../styles";
 import { Link } from "react-router-dom";
 
 export const ButtonContainer = styled.div`
-    padding: 4px 85px;
+    padding: 4px;
     background-color: ${cores.white};
     color: ${cores.pink};
     font-size: 14px;
     font-weight: bold;
+    text-align: center;
 
 `
 
