@@ -1,17 +1,32 @@
 import Dish from "../Dish";
 import { List } from "./styles";
 
-const DishesList = () => (
-    <div className="container">
-        <List>
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-        </List>
-    </div>
-)
+type DishItem = {
+  foto: string;
+  preco: number;
+  id: number;
+  nome: string;
+  descricao: string;
+  porcao: string;
+};
 
-export default DishesList
+type Props = {
+  cardapio: DishItem[];
+};
+
+const DishesList = ({ cardapio }: Props) => (
+  <div className="container">
+    <List>
+      {cardapio.map((item) => (
+        <Dish
+          key={item.id}
+          image={item.foto}
+          title={item.nome}
+          description={item.descricao}
+        />
+      ))}
+    </List>
+  </div>
+);
+
+export default DishesList;

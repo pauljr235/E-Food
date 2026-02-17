@@ -1,13 +1,19 @@
-import pizza from '../../assets/images/image 3.png'
 import { ButtonContainer } from '../Button/styles'
 import { Card, Description, Imagem, Title } from './styles'
 
-const Dish = () => (
+type Props = {
+    image: string
+    title: string
+    description: string
+
+}
+
+const Dish = ({image, title, description}: Props) => (
     <Card>
-        <Imagem src={pizza} alt="Imagem pizza" />
-        <Title>Pizza Margarita</Title>
-        <Description>A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!</Description>
-        <ButtonContainer>Adicionar ao carrinho</ButtonContainer>
+        <Imagem src={image} alt={title} />
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+        <ButtonContainer title='Clique aqui para adicionar ao carrinho'>Adicionar ao carrinho</ButtonContainer>
     </Card>
 )
 
