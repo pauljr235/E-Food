@@ -1,4 +1,3 @@
-import sushi from '../../assets/images/sushi.png'
 import estrela from '../../assets/images/estrela.png'
 import { Card, CardInfo, Container, Descricao, Imagem, Infos, Ratings, Titulo } from './styles'
 import { ButtonLink } from '../Button/styles'
@@ -7,13 +6,14 @@ import Tag from '../Tag'
 type Props = {
     image: string
     title: string
-    rating: string
+    rating: number
     description: string
     infos: string[]
+    id: number
 }
 
 
-const Product = ({image, title, rating, description, infos}: Props) => (
+const Product = ({image, title, rating, description, infos, id}: Props) => (
     <Card>
         <Imagem src={image} alt={title} />
         <Infos>
@@ -30,7 +30,7 @@ const Product = ({image, title, rating, description, infos}: Props) => (
             </Ratings>
         </CardInfo>
         <Descricao>{description}</Descricao>
-        <ButtonLink type='link' to='/perfil' title='Clique aqui para saber mais'>Saiba mais</ButtonLink>
+        <ButtonLink type='link' to={`/restaurante/${id}`} title='Clique aqui para saber mais'>Saiba mais</ButtonLink>
     </Container>
     </Card>
 )

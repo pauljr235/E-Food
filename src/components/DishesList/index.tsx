@@ -1,18 +1,11 @@
+import { CardapioItem, Restaurant } from "../../pages/Home";
 import Dish from "../Dish";
 import { List } from "./styles";
 
-type DishItem = {
-  foto: string;
-  preco: number;
-  id: number;
-  nome: string;
-  descricao: string;
-  porcao: string;
-};
 
 type Props = {
-  cardapio: DishItem[];
-};
+   cardapio: CardapioItem[]; 
+  };
 
 const DishesList = ({ cardapio }: Props) => (
   <div className="container">

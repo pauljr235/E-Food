@@ -5,7 +5,10 @@ import Home from "./pages/Home";
 const Rotas = () => (
   <Routes>
     <Route path='/' element={<Home/>}/>
-    <Route path='/perfil/:id' element={<Perfil/>}/>
+    <Route path="/restaurante/:id" element={<Perfil />} />
+
+
+
   </Routes>
 )
 
