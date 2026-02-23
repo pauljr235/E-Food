@@ -1,32 +1,36 @@
-E-Food — Aplicação React + TypeScript
+🍽️ E-Food — Aplicação React + TypeScript
 Plataforma de listagem de restaurantes e cardápios, desenvolvida em React + TypeScript, consumindo a API pública da EBAC. O projeto utiliza componentização, styled-components, react-router-dom e boas práticas de arquitetura.
 
-Badges:
-
+🏷️ Badges
 https://img.shields.io/badge/React-18.0-blue
 https://img.shields.io/badge/TypeScript-5.0-blue
 https://img.shields.io/badge/Styled--Components-v5.3-pink
 https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow
 
-Tecnologias Utilizadas:
+📸 Demonstração (Screenshots)
+(Adicione aqui prints da Home e Perfil quando quiser)
 
-- React + TypeScript
-- Styled-components
-- React-router-dom
-- Vite
-- Fetch API
-- Arquitetura baseada em componentes
+🚀 Tecnologias Utilizadas
+React + TypeScript
 
-Instalação:
+Styled-components
 
+React-router-dom
+
+Vite
+
+Fetch API
+
+Arquitetura baseada em componentes
+
+📦 Instalação
+bash
 git clone https://github.com/SEU-USUARIO/NOME-DO-PROJETO.git
 cd NOME-DO-PROJETO
 npm install
-npm install --save styled-components react-router-dom
-npm start
-
-Estrutura do Projeto:
-
+npm run dev
+📂 Estrutura do Projeto
+Código
 src/
  ├── components/
  │    ├── Banner/
@@ -47,13 +51,11 @@ src/
  ├── styles/
  ├── App.tsx
  └── main.tsx
---------------------//---------------------------------
-
-Página Home:
-
+🏠 Página Home
 A página Home faz a requisição da lista de restaurantes e exibe-os através do componente ProductsList.
-Modelo utilizado na Home:
 
+Modelo utilizado na Home
+ts
 export type CardapioItem = {
   foto: string
   preco: number
@@ -73,52 +75,40 @@ export type Restaurant = {
   capa: string
   cardapio: CardapioItem[]
 }
-
-Lógica principal:
-
-const Home = () => {
-    const [produtos, setProdutos] = useState<Restaurant[]>([])
-
+Lógica principal
+tsx
 useEffect(() => {
   fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
     .then(res => res.json())
     .then(resJson => setProdutos(resJson))
 }, [])
-
-Renderização:
-
+Renderização
+tsx
 <Header />
 <ProductsList restaurants={produtos} />
-----------// --------------------------
-  
-Página Perfil
+👤 Página Perfil
 A página Perfil exibe os detalhes de um restaurante específico, incluindo o cardápio.
 
-Lógica principal:
+Lógica principal
+tsx
+const { id } = useParams();
+const [menu, setMenu] = useState<Restaurant | null>(null);
 
-const Perfil = () => {
-  const { id } = useParams();
-  const [menu, setMenu] = useState<Restaurant | null>(null);
-
-  useEffect(() => {
-    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((resJson) => {
-        setMenu(resJson)
-      });
-  }, [id]);
-
-Renderização:
-
+useEffect(() => {
+  fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
+    .then((res) => res.json())
+    .then((resJson) => setMenu(resJson));
+}, [id]);
+Renderização
+tsx
 <HeaderPerfil />
 <Banner image={menu.capa} type={menu.tipo} name={menu.titulo} />
 <DishesList cardapio={menu.cardapio} />
-------------------------//------------------------------------
-
-Componentes:
-
+🧱 Componentes
 🔹 Button
 Aceita dois tipos: button e link.
+
+tsx
 type Props = {
   type: 'button' | 'link'
   title: string
@@ -126,54 +116,62 @@ type Props = {
   onClick?: () => void
   children: string
 }
-
 🔹 Tag
 Componente simples para exibir etiquetas.
-<Tag>{children}</Tag>
 
+tsx
+<Tag>{children}</Tag>
 🔹 Product
 Exibe um restaurante individual com:
+
 Imagem
+
 Tags
+
 Título
+
 Avaliação
+
 Descrição
+
 Link para página do restaurante
 
 🔹 ProductsList
 Recebe um array de restaurantes e renderiza vários Product.
+
 Inclui lógica para gerar tags:
 
+ts
 if (restaurant.destacado) tags.push('Destaque da Semana')
 if (restaurant.tipo) tags.push(restaurant.tipo)
-
 🔹 Dish
 Exibe um prato individual do cardápio.
+
+tsx
 <Dish
   image={item.foto}
   title={item.nome}
   description={item.descricao}
 />
-
 🔹 DishesList
 Renderiza uma lista de pratos recebidos via props:
+
+tsx
 <DishesList cardapio={menu.cardapio} />
-
------------------------------------------//---------------------------------------
-
-Rotas
+🧭 Rotas
 Arquivo routes/index.tsx:
 
+tsx
 <Routes>
   <Route path="/" element={<Home />} />
   <Route path="/restaurante/:id" element={<Perfil />} />
 </Routes>
-
-Header e HeaderPerfil:
-
+🖼️ Header e HeaderPerfil
 Header → usado na Home
+
 HeaderPerfil → usado na página Perfil
+
 Ambos utilizam imagens de fundo e logotipo.
 
-Footer
+🦶 Footer
 Renderizado globalmente no App.tsx.
