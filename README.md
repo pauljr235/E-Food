@@ -1,46 +1,179 @@
-# Getting Started with Create React App
+E-Food — Aplicação React + TypeScript
+Plataforma de listagem de restaurantes e cardápios, desenvolvida em React + TypeScript, consumindo a API pública da EBAC. O projeto utiliza componentização, styled-components, react-router-dom e boas práticas de arquitetura.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Badges:
 
-## Available Scripts
+https://img.shields.io/badge/React-18.0-blue
+https://img.shields.io/badge/TypeScript-5.0-blue
+https://img.shields.io/badge/Styled--Components-v5.3-pink
+https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow
 
-In the project directory, you can run:
+Tecnologias Utilizadas:
 
-### `npm start`
+- React + TypeScript
+- Styled-components
+- React-router-dom
+- Vite
+- Fetch API
+- Arquitetura baseada em componentes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Instalação:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+git clone https://github.com/SEU-USUARIO/NOME-DO-PROJETO.git
+cd NOME-DO-PROJETO
+npm install
+npm install --save styled-components react-router-dom
+npm start
 
-### `npm test`
+Estrutura do Projeto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+src/
+ ├── components/
+ │    ├── Banner/
+ │    ├── Button/
+ │    ├── Dish/
+ │    ├── DishesList/
+ │    ├── Footer/
+ │    ├── Header/
+ │    ├── HeaderPerfil/
+ │    ├── Product/
+ │    ├── ProductsList/
+ │    └── Tag/
+ ├── pages/
+ │    ├── Home/
+ │    └── Perfil/
+ ├── routes/
+ │    └── index.tsx
+ ├── styles/
+ ├── App.tsx
+ └── main.tsx
+--------------------//---------------------------------
 
-### `npm run build`
+Página Home:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A página Home faz a requisição da lista de restaurantes e exibe-os através do componente ProductsList.
+Modelo utilizado na Home:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export type CardapioItem = {
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export type Restaurant = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: CardapioItem[]
+}
 
-### `npm run eject`
+Lógica principal:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+const Home = () => {
+    const [produtos, setProdutos] = useState<Restaurant[]>([])
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+useEffect(() => {
+  fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
+    .then(res => res.json())
+    .then(resJson => setProdutos(resJson))
+}, [])
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Renderização:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<Header />
+<ProductsList restaurants={produtos} />
+----------// --------------------------
+  
+Página Perfil
+A página Perfil exibe os detalhes de um restaurante específico, incluindo o cardápio.
 
-## Learn More
+Lógica principal:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const Perfil = () => {
+  const { id } = useParams();
+  const [menu, setMenu] = useState<Restaurant | null>(null);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  useEffect(() => {
+    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((resJson) => {
+        setMenu(resJson)
+      });
+  }, [id]);
+
+Renderização:
+
+<HeaderPerfil />
+<Banner image={menu.capa} type={menu.tipo} name={menu.titulo} />
+<DishesList cardapio={menu.cardapio} />
+------------------------//------------------------------------
+
+Componentes:
+
+🔹 Button
+Aceita dois tipos: button e link.
+type Props = {
+  type: 'button' | 'link'
+  title: string
+  to?: string
+  onClick?: () => void
+  children: string
+}
+
+🔹 Tag
+Componente simples para exibir etiquetas.
+<Tag>{children}</Tag>
+
+🔹 Product
+Exibe um restaurante individual com:
+Imagem
+Tags
+Título
+Avaliação
+Descrição
+Link para página do restaurante
+
+🔹 ProductsList
+Recebe um array de restaurantes e renderiza vários Product.
+Inclui lógica para gerar tags:
+
+if (restaurant.destacado) tags.push('Destaque da Semana')
+if (restaurant.tipo) tags.push(restaurant.tipo)
+
+🔹 Dish
+Exibe um prato individual do cardápio.
+<Dish
+  image={item.foto}
+  title={item.nome}
+  description={item.descricao}
+/>
+
+🔹 DishesList
+Renderiza uma lista de pratos recebidos via props:
+<DishesList cardapio={menu.cardapio} />
+
+-----------------------------------------//---------------------------------------
+
+Rotas
+Arquivo routes/index.tsx:
+
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/restaurante/:id" element={<Perfil />} />
+</Routes>
+
+Header e HeaderPerfil:
+
+Header → usado na Home
+HeaderPerfil → usado na página Perfil
+Ambos utilizam imagens de fundo e logotipo.
+
+Footer
+Renderizado globalmente no App.tsx.
