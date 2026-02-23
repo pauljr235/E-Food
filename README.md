@@ -7,9 +7,6 @@ https://img.shields.io/badge/TypeScript-5.0-blue
 https://img.shields.io/badge/Styled--Components-v5.3-pink
 https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow
 
-📸 Demonstração (Screenshots)
-(Adicione aqui prints da Home e Perfil quando quiser)
-
 🚀 Tecnologias Utilizadas
 React + TypeScript
 
@@ -29,6 +26,7 @@ git clone https://github.com/SEU-USUARIO/NOME-DO-PROJETO.git
 cd NOME-DO-PROJETO
 npm install
 npm run dev
+
 📂 Estrutura do Projeto
 Código
 src/
@@ -51,6 +49,7 @@ src/
  ├── styles/
  ├── App.tsx
  └── main.tsx
+ 
 🏠 Página Home
 A página Home faz a requisição da lista de restaurantes e exibe-os através do componente ProductsList.
 
@@ -82,6 +81,7 @@ useEffect(() => {
     .then(res => res.json())
     .then(resJson => setProdutos(resJson))
 }, [])
+
 Renderização
 tsx
 <Header />
@@ -99,6 +99,7 @@ useEffect(() => {
     .then((res) => res.json())
     .then((resJson) => setMenu(resJson));
 }, [id]);
+
 Renderização
 tsx
 <HeaderPerfil />
@@ -175,3 +176,10 @@ Ambos utilizam imagens de fundo e logotipo.
 
 🦶 Footer
 Renderizado globalmente no App.tsx.
+
+▶️ Executar o Projeto
+bash
+npm run dev
+📦 Build para Produção
+bash
+npm run build
